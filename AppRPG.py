@@ -8,7 +8,10 @@ with open('config.yaml', 'r') as config_file:
     config = yaml.safe_load(config_file)
 os.environ['OPENAI_API_KEY'] = config['OPENAI_API_KEY']
 
-openai = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=0)
+openai = ChatOpenAI(
+    model_name='gpt-3.5-turbo',
+    temperature=0
+    )
 
 template = '''
 Você é um escritor de aventuras de RPG.
