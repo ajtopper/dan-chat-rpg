@@ -7,26 +7,19 @@ import yaml
 
 
 #with open('config.yaml', 'r') as config_file:
-#    config = yaml.safe_load(config_file)
-#s.environ['OPENAI_API_KEY'] = config['OPENAI_API_KEY']
+  #  config = yaml.safe_load(config_file)
+#os.environ['OPENAI_API_KEY'] = config['OPENAI_API_KEY']
 
 
-# Acessando a chave da API diretamente do st.secrets
-#openai_api_key = st.secrets["general"]["OPENAI_API_KEY"]
+# Configurando a chave da API do OpenAI via st.secrets
+os.environ['OPENAI_API_KEY'] = st.secrets["OPENAI_API_KEY"]
 
-
-# Definindo a chave da API como uma variável de ambiente
-#os.environ['OPENAI_API_KEY'] = openai_api_key
-
-
-# 2. **Acesse a chave da API via st.secrets**
-os.environ['OPENAI_API_KEY'] = st.secrets["OPENAI_API_KEY"] 
-
-
+# Inicializando o cliente OpenAI
 openai = ChatOpenAI(
     model_name='gpt-3.5-turbo',
     temperature=0
-    )
+)
+
 
 template = '''
 Você é um escritor de aventuras de RPG.
