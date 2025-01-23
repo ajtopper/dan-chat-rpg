@@ -18,7 +18,8 @@ Você é um escritor de aventuras de RPG.
 Escreva um relatório de aventura de RPG detalhado levando em consideração o gênero "{genero}" para uma mesa na temática {tema} para uma mesa com {jogador} jogadores.
 
 O relatório dever ser escrito em {idioma} e incluir a seguinte análise:
-Qual bundles da Loot Studios são melhores para jogar determinada aventura.
+Qual bundles da Loot Studios são melhores para jogar determinada aventura. Evite ao máximo misturar bundles que não tem simalaridade entre si, porque senão a história ficará desconexa.
+Trago um resultado total 3 sugestões de bundles.
 Qual plot e Lore as aventuras escolhidas pelo sistema e como o DM pode criar ganchos para as suas aventuras baseadas nele, além disso leve em consideração a quantidades de jogadores.
 Dê no mínimo 5 a 10 sugestões de ganchos para o DM.
 
