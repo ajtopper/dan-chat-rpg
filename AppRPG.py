@@ -32,7 +32,7 @@ else:
 #     st.stop()
 
 
-# Inicializando o cliente OpenAI com try 
+# Inicializando o cliente OpenAI com try
 try:
     openai = ChatOpenAI(
         api_key=st.secrets["OPENAI_API_KEY"],
