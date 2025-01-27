@@ -12,16 +12,27 @@ import yaml
 
 
 # Configurando a chave da API do OpenAI via st.secrets
-os.environ['OPENAI_API_KEY'] = st.secrets["OPENAI_API_KEY"]
+#os.environ['OPENAI_API_KEY'] = st.secrets["OPENAI_API_KEY"]
 
-st.write("Chave da API carregada com sucesso:", st.secrets["OPENAI_API_KEY"][:5] + "*****")
+#st.write("Chave da API carregada com sucesso:", st.secrets["OPENAI_API_KEY"][:5] + "*****")
+
+
+with st.sidebar:
+    openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
+    "[Get an OpenAI API key](https://platform.openai.com/account/api-keys)"
+
+if not openai_api_key:
+    st.error("Please add your OpenAI API key to continue.")
+    st.stop()
 
 
 # Inicializando o cliente OpenAI
 openai = ChatOpenAI(
+    api_key=openai_api_key,
     model_name='gpt-3.5-turbo',
     temperature=0
 )
+
 
 
 
