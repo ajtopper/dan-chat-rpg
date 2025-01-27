@@ -5,36 +5,43 @@ import os
 import yaml
 
 
-
+ # METODO CARREGANDO KEY PELO YAML
 #with open('config.yaml', 'r') as config_file:
-  #  config = yaml.safe_load(config_file)
+#    config = yaml.safe_load(config_file)
 #os.environ['OPENAI_API_KEY'] = config['OPENAI_API_KEY']
 
 
+# METODO PARA VALIDAR A CHAVE E NAO EXPOR
 # Configurando a chave da API do OpenAI via st.secrets
-#os.environ['OPENAI_API_KEY'] = st.secrets["OPENAI_API_KEY"]
-
-#st.write("Chave da API carregada com sucesso:", st.secrets["OPENAI_API_KEY"][:5] + "*****")
+os.environ['OPENAI_API_KEY'] = st.secrets['OPENAI_API_KEY']
 
 
-with st.sidebar:
-    openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
-    "[Get an OpenAI API key](https://platform.openai.com/account/api-keys)"
-
-if not openai_api_key:
-    st.error("Please add your OpenAI API key to continue.")
-    st.stop()
+if "OPENAI_API_KEY" in st.secrets and isinstance(st.secrets["OPENAI_API_KEY"], str):
+    st.write("Chave encontrada e válida.")
+else:
+    st.error("Chave OPENAI_API_KEY ausente ou inválida. Verifique o arquivo secrets.toml.")
 
 
-# Inicializando o cliente OpenAI
-openai = ChatOpenAI(
-    api_key=openai_api_key,
-    model_name='gpt-3.5-turbo',
-    temperature=0
-)
+# Método para o user inserir a key
+#with st.sidebar:
+#    openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
+#    "[Get an OpenAI API key](https://platform.openai.com/account/api-keys)"
+
+#if not openai_api_key:
+#    st.error("Please add your OpenAI API key to continue.")
+#     st.stop()
 
 
-
+# Inicializando o cliente OpenAI com try 
+try:
+    openai = ChatOpenAI(
+        api_key=st.secrets["OPENAI_API_KEY"],
+        model_name='gpt-3.5-turbo',
+        temperature=0
+    )
+    st.success("ChatOpenAI inicializado com sucesso!")
+except Exception as e:
+    st.error(f"Erro ao inicializar ChatOpenAI: {e}")
 
 template = '''
 Você é um escritor de aventuras de RPG.
