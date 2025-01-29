@@ -47,13 +47,18 @@ template = '''
 Você é um escritor de aventuras de RPG.
 Escreva um relatório de aventura de RPG detalhado levando em consideração o gênero "{genero}" para uma mesa na temática {tema} para uma mesa com {jogador} jogadores.
 
-O relatório dever ser escrito em {idioma} e incluir a seguinte análise:
-Qual bundles da Loot Studios são melhores para jogar determinada aventura. Evite ao máximo misturar bundles que não tem simalaridade entre si, porque senão a história ficará desconexa.
-Trago um resultado total 3 sugestões de bundles.
-Qual plot e Lore as aventuras escolhidas pelo sistema e como o DM pode criar ganchos para as suas aventuras baseadas nele, além disso leve em consideração a quantidades de jogadores.
-Dê no mínimo 5 a 10 sugestões de ganchos para o DM.
+O relatório dever ser sempre escrito em {idioma} e incluir a seguinte análise:
+
+Qual bundles da Loot Studios são melhores para jogar determinada aventura? 
+Evite ao máximo misturar bundles que não tem simalaridade entre si, porque senão a história ficará desconexa.
+
+Traga um resultado total de 3 sugestões de bundles.
+Traga um resumo dos Bundles escolhidas na sua análise e traga como o DM pode criar ganchos relacionados a cada bundle. 
+Além disso leve em consideração que a mesa possui {jogador} jogadores.
+Dê no mínimo 5 sugestões de ganchos para o DM.
 
 Certifique-se de fornecer insights e conclusões para esta seção.
+
 
 ---------------------------------------------------------------------------------------
 
@@ -341,26 +346,26 @@ The Kragudür were lost to corruption. On the Day of Thunder, they were in the d
 
 
 
+Formate o relatório utilizando Markdown
 
 
 '''
-#Formate o relatório utilizando Markdown
 
 prompt_template = PromptTemplate.from_template(template=template)
 
-generos = ['Suspense','Horror', 'Horror Cósmico', 'Ação', 'Mistério', 'Romance','Terror']
-temas = ['Sci-Fi','Medieval','Lovecraftiano','Steampunk','Space Opera','Cyberpunk','Anime','Velho Oeste']
-jogadores = ['1','2','3','4','5','6','7','8']
-idiomas = ['Português', 'Inglês', 'Espanhol', 'Francês', 'Alemão', 'Chinês']
+generos = ['Suspense','Horror', 'Cosmic Horror', 'Action', 'Mystery', 'Romance','Terror']
+temas = ['Sci-Fi','Medieval','Lovecraft','Steampunk','Space Opera','Cyberpunk','Anime','Wild West']
+jogadores = ['1','2','3','4','5']
+idiomas = ['English', 'Português', 'Español', 'Français', 'Deutsch', '中国人']
 
-st.title('Gerador de Aventuras de RPG - Loot Studios')
+st.title('Which Loot´s Bundle fit in my Adventure?')
 
-genero = st.selectbox('Selecione o gênero:', generos)
-tema = st.selectbox('Selecione o tema:', temas)
-jogador = st.selectbox('Selecione a quantidade de jogadores', jogadores)
-idioma = st.selectbox('Selecione o idioma:', idiomas)
+genero = st.sidebar.selectbox('Select the genre:', generos)
+tema = st.sidebar.selectbox('Select the theme:', temas)
+jogador = st.sidebar.selectbox('How many players?', jogadores)
+idioma = st.sidebar.selectbox('Select the language:', idiomas)
 
-if st.button('Gerar Relatório para Aventura'):
+if st.sidebar.button('Gerar Relatório para Aventura'):
     prompt = prompt_template.format(
         genero=genero,
         tema=tema,
