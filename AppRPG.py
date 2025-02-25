@@ -33,15 +33,39 @@ else:
 
 
 # Inicializando o cliente OpenAI com try
+#try:
+#    openai = ChatOpenAI(
+#        api_key=st.secrets["OPENAI_API_KEY"],
+#        model_name='gpt-3.5-turbo',
+#        temperature=0
+#    )
+#    st.success("ChatOpenAI inicializado com sucesso!")
+#except Exception as e:
+#    st.error(f"Erro ao inicializar ChatOpenAI: {e}")
+    
+    
+    # Inicializando o cliente DeepSeek com try
 try:
     openai = ChatOpenAI(
         api_key=st.secrets["OPENAI_API_KEY"],
-        model_name='gpt-3.5-turbo',
+        base_url="https://api.deepseek.com",
         temperature=0
     )
     st.success("ChatOpenAI inicializado com sucesso!")
 except Exception as e:
     st.error(f"Erro ao inicializar ChatOpenAI: {e}")
+    
+    response = client.chat.completions.create(
+    model="deepseek-chat",
+    messages=[
+        {"role": "system", "content": "You are a helpful assistant"},
+        {"role": "user", "content": "Hello"},
+    ],
+    stream=False
+)
+
+print(response.choices[0].message.content)
+
 
 template = '''
 Você é um escritor de aventuras de RPG.
