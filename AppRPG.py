@@ -51,9 +51,9 @@ try:
         base_url="https://api.deepseek.com",
         temperature=0
     )
-    st.success("ChatOpenAI inicializado com sucesso!")
+    st.success("DeepSeek inicializado com sucesso!")
 except Exception as e:
-    st.error(f"Erro ao inicializar ChatOpenAI: {e}")
+    st.error(f"Erro ao inicializar DeepSeek: {e}")
     
     response = client.chat.completions.create(
     model="deepseek-chat",
