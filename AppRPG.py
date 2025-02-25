@@ -33,36 +33,19 @@ else:
 
 
 # Inicializando o cliente OpenAI com try
-#try:
-#    openai = ChatOpenAI(
-#        api_key=st.secrets["OPENAI_API_KEY"],
-#        model_name='gpt-3.5-turbo',
-#        temperature=0
-#    )
-#    st.success("ChatOpenAI inicializado com sucesso!")
-#except Exception as e:
-#    st.error(f"Erro ao inicializar ChatOpenAI: {e}")
-    
-    
-    # Inicializando o cliente DeepSeek com try
 try:
     openai = ChatOpenAI(
         api_key=st.secrets["OPENAI_API_KEY"],
-        base_url="https://api.deepseek.com",
+        model_name='gpt-3.5-turbo',
         temperature=0
     )
-    st.success("DeepSeek inicializado com sucesso!")
+    st.success("ChatOpenAI inicializado com sucesso!")
 except Exception as e:
-    st.error(f"Erro ao inicializar DeepSeek: {e}")
+    st.error(f"Erro ao inicializar ChatOpenAI: {e}")
     
-    response = client.chat.completions.create(
-    model="deepseek-chat",
-    messages=[
-        {"role": "system", "content": "You are a helpful assistant"},
-        {"role": "user", "content": "Hello"},
-    ],
-    stream=False
-)
+    
+
+    
 
 
 
@@ -397,6 +380,10 @@ if st.sidebar.button('Gerar Relatório para Aventura'):
     )
 
     response = openai.invoke(prompt)
+    
+    
+
+
 
     st.subheader('Relatório Gerado:')
     st.write(response.content)
